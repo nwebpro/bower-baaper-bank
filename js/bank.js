@@ -46,6 +46,40 @@ document.getElementById('btn-deposit').addEventListener('click', function(){
 *   Step - 1 Add event listener to the withdraw button
 */
 document.getElementById('btn-withdraw').addEventListener('click', function(){
-    
+    // Step -2
+    const withdrawField = document.getElementById('withdraw-amount');
+    const newWithdrawAmountString = withdrawField.value;
+    const newWithdrawAmount = parseFloat(newWithdrawAmountString);
+    // Clear The withdraw field
+    withdrawField.value = '';
+
+    if(isNaN(newWithdrawAmount)){
+        alert('Please provide a valid number!');
+        return;
+    }
+
+    // Step -3
+    const totalWithdrawElement = document.getElementById('total-withdraw');
+    const prvWithdrawTotalString = totalWithdrawElement.innerText;
+    const prvWithdrawTotal = parseFloat(prvWithdrawTotalString);
+
+    // Step -5
+    const balanceTotalElement = document.getElementById('total-balance');
+    const balanceTotalElementString = balanceTotalElement.innerText;
+    const prvBalanceTotal = parseFloat(balanceTotalElementString);
+
+    if(newWithdrawAmount > prvBalanceTotal){
+        alert('Bower Baaper Bank a Eto Taka nay!');
+        return;
+    }
+
+    // Step - 4
+    const currentWithdrawTotal = prvWithdrawTotal + newWithdrawAmount;
+    totalWithdrawElement.innerText = currentWithdrawTotal;
+
+    // Step - 6 Calculate current total balance
+    const currentBalanceTotal = prvBalanceTotal - newWithdrawAmount;
+    balanceTotalElement.innerText = currentBalanceTotal;
+
 });
 
